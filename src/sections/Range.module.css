@@ -1,0 +1,103 @@
+.range { background: var(--bg-sunken); }
+
+.grid {
+  display: grid;
+  /* 24rem floors the layout at three columns on a wide screen, so six cards
+     fill exactly two rows. Two, three and six all divide cleanly, so there
+     is never a half-empty final row at any width. */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 24rem), 1fr));
+  border-block-start: 1px solid var(--rule);
+  border-inline-start: 1px solid var(--rule);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+}
+
+/* Hairlines live on the cells rather than on a background showing through a
+   1px gap. A gap background is tidier until a row is short, at which point
+   the empty tracks paint themselves as solid blocks. */
+.cell {
+  display: flex;
+  background: var(--bg);
+  border-inline-end: 1px solid var(--rule);
+  border-block-end: 1px solid var(--rule);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  text-decoration: none;
+  background: var(--bg);
+  transition: background var(--dur-base) var(--ease-out);
+}
+
+.card:hover { background: var(--bg-raised); }
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--forest-900);
+}
+
+.media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  /* Desaturated at rest so the grid reads as one system rather than six
+     unrelated photographs. Colour returns on hover. */
+  filter: saturate(0.55) contrast(1.05);
+  transition:
+    transform var(--dur-slow) var(--ease-out),
+    filter var(--dur-slow) var(--ease-out);
+}
+
+.card:hover .media img {
+  transform: scale(1.05);
+  filter: saturate(1) contrast(1);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-m);
+}
+
+.name {
+  font-size: var(--step-1);
+  font-weight: 500;
+}
+
+.summary {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--step--1);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+
+.spec {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-block-start: auto;
+  padding-block-start: var(--space-m);
+}
+
+.spec dt {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.spec dd {
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover .media img { transform: none; }
+}

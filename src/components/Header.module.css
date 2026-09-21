@@ -1,0 +1,220 @@
+.header {
+  position: fixed;
+  inset-block-start: 0;
+  inset-inline: 0;
+  z-index: var(--z-header);
+  padding-block-start: env(safe-area-inset-top, 0px);
+  transition:
+    background var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out);
+  border-block-end: 1px solid transparent;
+}
+
+/* Once the page moves the bar earns a surface. Before that it floats over
+   the hero so the photograph reads full-bleed. */
+.header[data-scrolled="true"] {
+  background: color-mix(in srgb, var(--paper) 86%, transparent);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  backdrop-filter: saturate(180%) blur(14px);
+  border-block-end-color: var(--rule);
+}
+
+.header[data-open="true"] {
+  background: var(--paper);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-l);
+  block-size: var(--header-h);
+}
+
+.brand {
+  font-size: 1.05rem;
+  text-decoration: none;
+  flex: none;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.2vw, 2.25rem);
+  margin-inline-start: auto;
+}
+
+.link {
+  position: relative;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  padding-block: 0.5rem;
+  color: var(--text-muted);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  inline-size: 100%;
+  block-size: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.link:hover { color: var(--text); }
+
+.link:hover::after,
+.linkActive::after {
+  transform: scaleX(1);
+  transform-origin: left center;
+}
+
+.linkActive { color: var(--text); }
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  flex: none;
+}
+
+.phone {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.phone:hover { color: var(--text); }
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.62em 1.2em;
+  border-radius: var(--radius-pill);
+  background: var(--forest-900);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--dur-base) var(--ease-out);
+}
+
+.cta:hover { background: var(--forest-700); }
+
+/* ---- Mobile toggle ------------------------------------------------------
+   Two bars that cross into an X. Kept as real elements rather than a glyph
+   so the transition is smooth and the hit area stays 44px. */
+.toggle {
+  display: none;
+  position: relative;
+  inline-size: 44px;
+  block-size: 44px;
+  margin-inline-start: auto;
+  margin-inline-end: -10px;
+  flex: none;
+}
+
+.toggleBar {
+  position: absolute;
+  inset-inline-start: 11px;
+  inline-size: 22px;
+  block-size: 1.5px;
+  background: currentColor;
+  border-radius: 2px;
+  transition: transform var(--dur-base) var(--ease-out);
+}
+
+.toggleBar:first-of-type { inset-block-start: 19px; }
+.toggleBar:last-of-type { inset-block-start: 25px; }
+
+.header[data-open="true"] .toggleBar:first-of-type {
+  transform: translateY(3px) rotate(45deg);
+}
+
+.header[data-open="true"] .toggleBar:last-of-type {
+  transform: translateY(-3px) rotate(-45deg);
+}
+
+/* ---- Drawer ------------------------------------------------------------- */
+.drawer {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  block-size: calc(100svh - var(--header-h) - env(safe-area-inset-top, 0px));
+  padding: var(--space-l) var(--gutter)
+           calc(var(--space-xl) + env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+}
+
+.drawerNav {
+  display: flex;
+  flex-direction: column;
+  border-block-start: 1px solid var(--rule);
+}
+
+.drawerLink {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-m);
+  padding-block: var(--space-m);
+  border-block-end: 1px solid var(--rule);
+  font-family: var(--font-display);
+  font-size: var(--step-3);
+  font-weight: 400;
+  letter-spacing: var(--tracking-snug);
+  text-decoration: none;
+  /* Each row slides in a beat after the one above it. */
+  animation: drawer-in var(--dur-slow) var(--ease-out) backwards;
+  animation-delay: calc(var(--i) * 55ms + 60ms);
+}
+
+.drawerIndex {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent-strong);
+}
+
+.drawerFoot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin-block-start: var(--space-xl);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+@keyframes drawer-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (max-width: 62rem) {
+  .nav, .actions { display: none; }
+  .toggle { display: block; }
+  .drawer { display: flex; }
+  .header[data-open="true"] { block-size: 100svh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawerLink { animation: none; }
+}

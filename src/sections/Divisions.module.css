@@ -1,0 +1,139 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: var(--space-l);
+}
+
+.cell { display: flex; }
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  inline-size: 100%;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  background: var(--bg-raised);
+  text-decoration: none;
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.panel:hover {
+  border-color: var(--rule-strong);
+  box-shadow: var(--shadow-m);
+  transform: translateY(-3px);
+}
+
+.media {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+}
+
+.media img {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.panel:hover .media img { transform: scale(1.045); }
+
+/* A forest wash that eases off on hover, so the photograph brightens as the
+   card comes forward. */
+.wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--forest-950) 55%, transparent),
+    color-mix(in srgb, var(--forest-900) 12%, transparent)
+  );
+  opacity: 1;
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.panel:hover .wash { opacity: 0.55; }
+
+.body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: var(--space-l);
+}
+
+.since {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+.name {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--step-3);
+}
+
+.tagline {
+  margin-block-start: var(--space-3xs);
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--text-muted);
+}
+
+.blurb {
+  margin-block-start: var(--space-m);
+  font-size: var(--step--1);
+  line-height: var(--leading-loose);
+  color: var(--text-muted);
+}
+
+.lines {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  margin-block-start: var(--space-m);
+}
+
+.lines li {
+  padding: 0.35em 0.85em;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+.more {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6em;
+  margin-block-start: auto;
+  padding-block-start: var(--space-l);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.more svg {
+  inline-size: 1em;
+  block-size: 1em;
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.panel:hover .more svg { transform: translateX(4px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .panel:hover,
+  .panel:hover .media img,
+  .panel:hover .more svg { transform: none; }
+}

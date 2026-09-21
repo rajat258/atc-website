@@ -1,0 +1,99 @@
+.btn {
+  --btn-bg: var(--forest-900);
+  --btn-fg: var(--paper);
+  --btn-border: var(--forest-900);
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7em;
+  padding: 0.85em 1.5em;
+  border: 1px solid var(--btn-border);
+  border-radius: var(--radius-pill);
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-mono);
+  font-size: var(--step--1);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background var(--dur-base) var(--ease-out),
+    color var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out);
+}
+
+.btn:hover { transform: translateY(-2px); }
+.btn:active { transform: translateY(0); }
+
+.arrow {
+  inline-size: 1em;
+  block-size: 1em;
+  flex: none;
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* Solid inverts to outline on hover, which reads as a press rather than a
+   colour swap and works on both cream and forest grounds. */
+.solid:hover {
+  --btn-bg: transparent;
+  --btn-fg: var(--text);
+}
+
+.outline {
+  --btn-bg: transparent;
+  --btn-fg: var(--text);
+  --btn-border: var(--rule-strong);
+}
+
+.outline:hover {
+  --btn-bg: var(--forest-900);
+  --btn-fg: var(--paper);
+  --btn-border: var(--forest-900);
+}
+
+.ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--text);
+  --btn-border: transparent;
+  padding-inline: 0.25em;
+}
+
+.ghost:hover { --btn-fg: var(--accent-strong); }
+
+/* On inverted bands the solid button flips to cream-on-forest. */
+:global(.section--invert) .solid,
+:global(.on-dark) .solid {
+  --btn-bg: var(--paper);
+  --btn-fg: var(--forest-950);
+  --btn-border: var(--paper);
+}
+
+:global(.section--invert) .solid:hover,
+:global(.on-dark) .solid:hover {
+  --btn-bg: transparent;
+  --btn-fg: var(--paper);
+}
+
+:global(.section--invert) .outline,
+:global(.on-dark) .outline {
+  --btn-fg: var(--paper);
+  --btn-border: var(--rule-invert);
+}
+
+:global(.section--invert) .outline:hover,
+:global(.on-dark) .outline:hover {
+  --btn-bg: var(--paper);
+  --btn-fg: var(--forest-950);
+  --btn-border: var(--paper);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn:hover { transform: none; }
+  .btn:hover .arrow { transform: none; }
+}

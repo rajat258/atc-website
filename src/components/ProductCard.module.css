@@ -1,0 +1,252 @@
+/* ==========================================================================
+   Product card
+   A photograph that opens into a datasheet.
+   ========================================================================== */
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-inline-size: 0;
+  background: var(--bg-raised);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-l);
+  overflow: hidden;
+  isolation: isolate;
+  /* Deep-linked cards clear the fixed header and the sticky filter bar. */
+  scroll-margin-block-start: calc(var(--header-h) + var(--space-3xl));
+  transition:
+    transform var(--dur-base) var(--ease-out),
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+
+/* Four pixels. Enough to read as a lift, not enough to shuffle the grid. */
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--rule-strong);
+  box-shadow: var(--shadow-m);
+}
+
+.card:focus-within,
+.card[data-open="true"] {
+  border-color: var(--rule-strong);
+  box-shadow: var(--shadow-m);
+}
+
+/* ---- Photograph -------------------------------------------------------- */
+
+.media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--bg-sunken);
+}
+
+.image {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  transform: scale(1);
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+
+.card:hover .image { transform: scale(1.04); }
+
+/* A forest wash seats the photograph in the palette. It lifts a little on
+   hover, so the image appears to come forward rather than simply move. */
+.wash {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--forest-950) 52%, transparent) 0%,
+    color-mix(in srgb, var(--forest-900) 16%, transparent) 58%,
+    transparent 100%
+  );
+  transition: opacity var(--dur-slow) var(--ease-out);
+}
+
+.card:hover .wash { opacity: 0.55; }
+
+/* ---- Body -------------------------------------------------------------- */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-m);
+  padding-block-end: var(--space-s);
+}
+
+.name {
+  font-size: var(--step-2);
+  text-wrap: balance;
+}
+
+.summary {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--step--1);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+
+.toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-s);
+  inline-size: 100%;
+  margin-block-start: var(--space-m);
+  padding-block-start: var(--space-s);
+  border-block-start: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  text-align: start;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.toggle:hover,
+.card[data-open="true"] .toggle { color: var(--accent-strong); }
+
+.toggleLabel { min-inline-size: 0; }
+
+/* A plus that unfolds into a minus. */
+.icon {
+  position: relative;
+  flex: none;
+  inline-size: 0.85rem;
+  block-size: 0.85rem;
+}
+
+.icon::before,
+.icon::after {
+  content: "";
+  position: absolute;
+  inset-inline: 0;
+  inset-block-start: 50%;
+  block-size: 1px;
+  background: currentColor;
+  transition: transform var(--dur-base) var(--ease-spring);
+}
+
+.icon::after { transform: rotate(90deg); }
+
+.card[data-open="true"] .icon::after { transform: rotate(0deg); }
+
+/* ---- Expanding panel ---------------------------------------------------
+   grid-template-rows 0fr to 1fr is the honest height-auto transition: the
+   panel measures its own content, so nothing is clipped or over-reserved. */
+
+.panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows var(--dur-base) var(--ease-out);
+}
+
+.card[data-open="true"] .panel { grid-template-rows: 1fr; }
+
+.panelClip {
+  overflow: hidden;
+  min-block-size: 0;
+}
+
+.panelBody {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
+  padding: var(--space-s) var(--space-m) var(--space-m);
+}
+
+.detail {
+  font-size: var(--step--1);
+  line-height: var(--leading-loose);
+  color: var(--text-muted);
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.blockLabel {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
+/* ---- Specification table ----------------------------------------------- */
+
+.specs {
+  inline-size: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.specKey,
+.specValue {
+  padding-block: var(--space-2xs);
+  border-block-start: 1px solid var(--rule);
+  text-align: start;
+  vertical-align: baseline;
+  overflow-wrap: break-word;
+}
+
+.specKey {
+  inline-size: 42%;
+  padding-inline-end: var(--space-s);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+.specValue {
+  font-size: var(--step--1);
+  line-height: var(--leading-snug);
+  color: var(--text);
+}
+
+/* ---- Application chips -------------------------------------------------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3xs) var(--space-2xs);
+  margin-block-start: var(--space-3xs);
+}
+
+.chip {
+  display: inline-flex;
+  padding: var(--space-3xs) var(--space-xs);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .image,
+  .wash,
+  .panel,
+  .icon::before,
+  .icon::after { transition: none; }
+
+  .card:hover { transform: none; }
+  .card:hover .image { transform: none; }
+  .card:hover .wash { opacity: 1; }
+}

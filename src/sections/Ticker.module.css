@@ -1,0 +1,67 @@
+.ticker {
+  overflow: hidden;
+  border-block-end: 1px solid var(--rule);
+  background: var(--bg-raised);
+  padding-block: var(--space-s);
+  /* Fades the strip out at both edges so items arrive and leave rather than
+     being cut off mid-word. */
+  -webkit-mask-image: linear-gradient(
+    to right, transparent, black 6%, black 94%, transparent
+  );
+  mask-image: linear-gradient(
+    to right, transparent, black 6%, black 94%, transparent
+  );
+}
+
+.track {
+  display: flex;
+  inline-size: max-content;
+  animation: scroll 46s linear infinite;
+}
+
+.track:hover { animation-play-state: paused; }
+
+.run {
+  display: flex;
+  align-items: center;
+  flex: none;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-s);
+  padding-inline: var(--space-m);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.mark {
+  inline-size: 5px;
+  block-size: 5px;
+  flex: none;
+  rotate: 45deg;
+  background: var(--accent);
+}
+
+@keyframes scroll {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+/* A ticker that cannot move has nothing to offer, so it stops and simply
+   wraps its claims onto as many lines as it needs. */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+    inline-size: 100%;
+    flex-wrap: wrap;
+  }
+  .track > div[aria-hidden] { display: none; }
+  .run { flex-wrap: wrap; justify-content: center; }
+  .ticker { -webkit-mask-image: none; mask-image: none; }
+}

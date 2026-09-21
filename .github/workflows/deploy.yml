@@ -1,0 +1,88 @@
+# Build the site and publish it to GitHub Pages.
+#
+# Every push to main runs this. Pull requests get a build-only run so a
+# broken change is caught before it can reach the live site.
+
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  # Lets you redeploy by hand from the Actions tab without an empty commit.
+  workflow_dispatch:
+
+# Read the repo, write Pages, and mint the OIDC token Pages deployment needs.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time. A newer push waits rather than racing, so the
+# live site always reflects the most recent successful build.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Type check
+        run: npx tsc -b
+
+      - name: Configure Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Build
+        # `base_path` comes back from configure-pages as the repository
+        # subdirectory, so the same workflow works for a project site today
+        # and a custom domain later without edits.
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: npm run build
+
+      - name: Add SPA fallback
+        # GitHub Pages serves static files only. Copying index.html to
+        # 404.html means a deep link such as /products is handed the app
+        # shell instead of a 404, and the router takes it from there.
+        run: cp dist/index.html dist/404.html
+
+      - name: Disable Jekyll
+        # Without this, Pages ignores any file or folder starting with an
+        # underscore, which quietly breaks some bundler output.
+        run: touch dist/.nojekyll
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy
+    # Pull requests build but do not publish.
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

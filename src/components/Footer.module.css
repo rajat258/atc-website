@@ -1,0 +1,93 @@
+.footer {
+  background: var(--bg-invert);
+  color: var(--text-on-invert);
+  --text: var(--text-on-invert);
+  --text-muted: var(--text-on-invert-muted);
+  --text-faint: color-mix(in srgb, var(--paper) 48%, transparent);
+  --rule: var(--rule-invert);
+  padding-block: var(--space-2xl)
+                 calc(var(--space-l) + env(safe-area-inset-bottom, 0px));
+}
+
+.topRule { margin-block-end: var(--space-xl); }
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) repeat(3, minmax(0, 1fr));
+  gap: var(--space-xl) var(--space-l);
+}
+
+.brandCol { font-size: 1.05rem; }
+
+.blurb {
+  margin-block-start: var(--space-m);
+  max-width: 38ch;
+  font-size: var(--step--1);
+  line-height: var(--leading-loose);
+  color: var(--text-muted);
+}
+
+.tagline {
+  margin-block-start: var(--space-m);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.colTitle {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-block-end: var(--space-m);
+}
+
+.col ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+}
+
+.col a {
+  font-size: var(--step--1);
+  text-decoration: none;
+  color: var(--text);
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.col a:hover { color: var(--accent); }
+
+.address {
+  margin-block-start: var(--space-m);
+  font-size: var(--step--1);
+  font-style: normal;
+  line-height: var(--leading-loose);
+  color: var(--text-muted);
+}
+
+.base {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-m);
+  flex-wrap: wrap;
+  margin-block-start: var(--space-2xl);
+  padding-block-start: var(--space-m);
+  border-block-start: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
+
+@media (max-width: 62rem) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .brandCol { grid-column: 1 / -1; }
+}
+
+@media (max-width: 34rem) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}

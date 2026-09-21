@@ -1,0 +1,19 @@
+.rule { margin-block-end: var(--space-l); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+  gap: var(--space-m);
+}
+
+.cell + .cell {
+  padding-inline-start: var(--space-m);
+  border-inline-start: 1px solid var(--rule);
+}
+
+@media (max-width: 60rem) {
+  .cell + .cell {
+    padding-inline-start: 0;
+    border-inline-start: 0;
+  }
+}

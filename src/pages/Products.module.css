@@ -1,0 +1,173 @@
+/* ==========================================================================
+   Products page
+   ========================================================================== */
+
+/* ---- Page header band --------------------------------------------------
+   A compact band, not a hero. Top padding clears the fixed header. */
+.head {
+  position: relative;
+  /* .section--invert flips text and rules but not the faint tier, so the
+     eyebrow is lifted here rather than left at 42% forest on forest. */
+  --text-faint: var(--text-on-invert-muted);
+  padding-block-start: calc(var(--header-h) + var(--space-2xl));
+  padding-block-end: var(--space-2xl);
+  overflow: hidden;
+}
+
+/* A soft forest lift across the top right, so the band is not a flat slab. */
+.head::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(
+    60rem 30rem at 82% 0%,
+    color-mix(in srgb, var(--forest-600) 45%, transparent) 0%,
+    transparent 70%
+  );
+}
+
+.headInner { position: relative; }
+
+.title {
+  margin-block-start: var(--space-m);
+  font-size: var(--step-6);
+  max-width: 18ch;
+}
+
+.headLede { margin-block-start: var(--space-m); }
+
+/* ---- Filter bar --------------------------------------------------------
+   Sticks under the fixed header on wider screens. On a phone it scrolls
+   away with the rest of the page rather than eating the viewport. */
+.filterBar {
+  position: sticky;
+  top: var(--header-h);
+  z-index: var(--z-sticky);
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-block-end: 1px solid var(--rule);
+}
+
+.filterInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-xs) var(--space-m);
+  padding-block: var(--space-s);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2xs);
+  min-inline-size: 0;
+}
+
+.filter {
+  padding: 0.55em 1.1em;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+  transition:
+    background var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.filter:hover {
+  border-color: var(--rule-strong);
+  color: var(--text);
+}
+
+.filter[aria-pressed="true"] {
+  background: var(--forest-900);
+  border-color: var(--forest-900);
+  color: var(--paper);
+}
+
+.count {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-faint);
+  white-space: nowrap;
+}
+
+/* ---- Division bands ----------------------------------------------------- */
+
+.division {
+  scroll-margin-block-start: calc(var(--header-h) + var(--space-3xl));
+}
+
+/* The second division sits on the sunken ground, so the two read apart
+   even when both are on screen at once. */
+.division[data-division="trading"] {
+  background: var(--bg-sunken);
+}
+
+/* ---- Grid ---------------------------------------------------------------
+   auto-fit does the column count on its own: three at desktop, two at
+   tablet, one on a phone. The min() keeps a 360px screen from overflowing. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(21rem, 100%), 1fr));
+  gap: var(--space-l);
+  align-items: start;
+}
+
+.cell { min-inline-size: 0; }
+
+/* ---- Closing call to action --------------------------------------------- */
+
+.cta {
+  padding-block: var(--space-section-tight);
+  --text-faint: var(--text-on-invert-muted);
+}
+
+.ctaRow {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-l);
+  margin-block-start: var(--space-l);
+}
+
+.ctaText { flex: 1 1 34ch; min-inline-size: 0; }
+
+.ctaTitle {
+  margin-block: var(--space-s) var(--space-m);
+  font-size: var(--step-4);
+  max-width: 20ch;
+}
+
+.ctaActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-s);
+  flex: none;
+}
+
+@media (max-width: 48rem) {
+  .filterBar { position: static; }
+  .filterInner { justify-content: flex-start; }
+}
+
+@media (max-width: 30rem) {
+  .title { max-width: none; }
+  .ctaTitle { max-width: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .filter { transition: none; }
+}

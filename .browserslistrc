@@ -1,0 +1,11 @@
+# The support floor for the built CSS and JS.
+# Covers evergreen desktop and mobile browsers plus the long tail of Android
+# and older Safari that a B2B audience in India and the export markets still
+# arrives on.
+> 0.3%
+last 3 versions
+Firefox ESR
+iOS >= 14
+Safari >= 14
+not dead
+not op_mini all

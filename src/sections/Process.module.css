@@ -1,0 +1,103 @@
+.process { padding-block-end: 0; }
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  gap: var(--space-l);
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  padding-block-start: var(--space-m);
+  border-block-start: 1px solid var(--rule-strong);
+}
+
+/* A short gold tick sitting on the rule above each step, so the row reads
+   as a measured sequence rather than four unrelated columns. */
+.step::before {
+  content: "";
+  position: absolute;
+  inset-block-start: -1px;
+  inset-inline-start: 0;
+  inline-size: 2.5rem;
+  block-size: 2px;
+  background: var(--accent);
+}
+
+.index {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-faint);
+}
+
+.name {
+  margin-block-start: var(--space-2xs);
+  font-size: var(--step-2);
+}
+
+.detail {
+  margin-block-start: var(--space-s);
+  font-size: var(--step--1);
+  line-height: var(--leading-loose);
+  color: var(--text-muted);
+}
+
+/* ---- Full-bleed quote band ---------------------------------------------- */
+.band {
+  position: relative;
+  margin-block-start: var(--space-section);
+  min-block-size: clamp(22rem, 46vh, 34rem);
+  display: grid;
+  place-items: end start;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.band img {
+  position: absolute;
+  inset: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.bandWash {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to top,
+    var(--forest-950) 4%,
+    color-mix(in srgb, var(--forest-950) 62%, transparent) 55%,
+    color-mix(in srgb, var(--forest-900) 30%, transparent) 100%
+  );
+}
+
+.quote {
+  max-width: 34ch;
+  padding: var(--space-xl) var(--gutter);
+  color: var(--paper);
+}
+
+.quote p {
+  font-family: var(--font-display);
+  font-size: var(--step-4);
+  font-weight: 300;
+  line-height: 1.12;
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+.quote cite {
+  display: block;
+  margin-block-start: var(--space-m);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-style: normal;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--gold-300);
+}

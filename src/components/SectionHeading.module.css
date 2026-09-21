@@ -1,0 +1,54 @@
+.head { margin-block-end: var(--space-xl); }
+
+.rule { margin-block-end: var(--space-m); }
+
+.row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--space-l);
+  flex-wrap: wrap;
+}
+
+.text { flex: 1 1 32ch; }
+
+.meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-s);
+  margin-block-end: var(--space-s);
+}
+
+/* The section number is the one place gold appears at small sizes. */
+.index {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent-strong);
+}
+
+.title {
+  font-size: var(--step-5);
+  max-width: 20ch;
+}
+
+.lede { margin-block-start: var(--space-m); }
+
+.action { flex: none; }
+
+.head[data-align="center"] { text-align: center; }
+
+.head[data-align="center"] .row { justify-content: center; }
+
+.head[data-align="center"] .meta { justify-content: center; }
+
+.head[data-align="center"] .title,
+.head[data-align="center"] .lede :global(.lede) {
+  margin-inline: auto;
+}
+
+@media (max-width: 40rem) {
+  .row { align-items: flex-start; }
+  .title { max-width: none; }
+}

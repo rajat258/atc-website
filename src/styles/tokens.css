@@ -1,0 +1,152 @@
+/* ==========================================================================
+   ATC GROUP — Design tokens
+   The single source of truth for colour, type, space, motion and elevation.
+   Nothing below this file should hard-code a raw value.
+   ========================================================================== */
+
+:root {
+  /* ---- Brand colour -----------------------------------------------------
+     Forest green and cream are lifted straight from the ATC group profile.
+     Gold is the metallic treatment used on the primary logo lockup and is
+     rationed deliberately: rules, numerals and active states only.        */
+  --forest-950: #081a10;
+  --forest-900: #0d2618;
+  --forest-800: #113220;
+  --forest-700: #17402a;
+  --forest-600: #1f5537;
+  --forest-500: #2f6b47;
+  --forest-400: #4d8865;
+  --forest-300: #7aa88d;
+  --forest-200: #aecabb;
+  --forest-100: #d9e7df;
+
+  --gold-600: #9a7413;
+  --gold-500: #b88c18;
+  --gold-400: #c9a227;
+  --gold-300: #ddbb54;
+  --gold-200: #ecd48d;
+
+  --paper: #f4f1ec;
+  --paper-warm: #faf8f4;
+  --paper-deep: #e9e4db;
+  --ink: #16181a;
+  --ink-soft: #3d4246;
+
+  /* ---- Semantic surface + text -----------------------------------------
+     Every component reads these, never the scales above, so a whole-site
+     re-skin is a change in one block.                                     */
+  --bg: var(--paper);
+  --bg-raised: var(--paper-warm);
+  --bg-sunken: var(--paper-deep);
+  --bg-invert: var(--forest-900);
+  --bg-invert-raised: var(--forest-800);
+
+  --text: var(--forest-950);
+  --text-muted: color-mix(in srgb, var(--forest-950) 62%, transparent);
+  --text-faint: color-mix(in srgb, var(--forest-950) 42%, transparent);
+  --text-on-invert: var(--paper);
+  --text-on-invert-muted: color-mix(in srgb, var(--paper) 66%, transparent);
+
+  --accent: var(--gold-400);
+  --accent-strong: var(--gold-600);
+
+  --rule: color-mix(in srgb, var(--forest-900) 18%, transparent);
+  --rule-strong: color-mix(in srgb, var(--forest-900) 42%, transparent);
+  --rule-invert: color-mix(in srgb, var(--paper) 20%, transparent);
+
+  /* ---- Type -------------------------------------------------------------
+     Outfit echoes the circular geometry of the AT monogram.
+     Inter carries running text. Plex Mono does the spec-sheet work.       */
+  --font-display: "Outfit", "Century Gothic", "Avenir Next", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Fluid ramp. Every step interpolates between a 360px phone and a
+     1440px desktop, so there is no breakpoint where type jumps.           */
+  --step--2: clamp(0.69rem, 0.67rem + 0.11vw, 0.75rem);
+  --step--1: clamp(0.83rem, 0.79rem + 0.18vw, 0.94rem);
+  --step-0:  clamp(1rem, 0.95rem + 0.24vw, 1.13rem);
+  --step-1:  clamp(1.2rem, 1.12rem + 0.38vw, 1.42rem);
+  --step-2:  clamp(1.44rem, 1.31rem + 0.6vw, 1.78rem);
+  --step-3:  clamp(1.73rem, 1.53rem + 0.92vw, 2.22rem);
+  --step-4:  clamp(2.07rem, 1.77rem + 1.37vw, 2.78rem);
+  --step-5:  clamp(2.49rem, 2.04rem + 2.01vw, 3.47rem);
+  --step-6:  clamp(2.99rem, 2.34rem + 2.9vw, 4.34rem);
+  --step-7:  clamp(3.58rem, 2.66rem + 4.11vw, 5.42rem);
+  --step-8:  clamp(4.3rem, 3rem + 5.78vw, 6.78rem);
+
+  --leading-tight: 1.04;
+  --leading-snug: 1.18;
+  --leading-normal: 1.6;
+  --leading-loose: 1.75;
+
+  --tracking-tight: -0.03em;
+  --tracking-snug: -0.015em;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.18em;
+
+  /* ---- Space ------------------------------------------------------------
+     A 4px-rooted scale. Section rhythm is fluid so long pages breathe on
+     desktop without swallowing a phone screen.                            */
+  --space-3xs: 0.25rem;
+  --space-2xs: 0.5rem;
+  --space-xs: 0.75rem;
+  --space-s: 1rem;
+  --space-m: 1.5rem;
+  --space-l: 2rem;
+  --space-xl: 3rem;
+  --space-2xl: 4rem;
+  --space-3xl: 6rem;
+  --space-section: clamp(4rem, 2.5rem + 6.5vw, 8.5rem);
+  --space-section-tight: clamp(2.75rem, 1.8rem + 4.2vw, 5.5rem);
+
+  /* ---- Layout -----------------------------------------------------------
+     --gutter is the one number that controls the page's side margin and is
+     honoured by the header, every section and the footer alike.           */
+  --gutter: clamp(1.25rem, 0.7rem + 2.4vw, 4rem);
+  --measure: 62ch;
+  --measure-narrow: 44ch;
+  --width-page: 84rem;
+  --width-content: 68rem;
+  --header-h: 4.5rem;
+
+  /* ---- Radius + elevation ---------------------------------------------- */
+  --radius-xs: 2px;
+  --radius-s: 4px;
+  --radius-m: 8px;
+  --radius-l: 14px;
+  --radius-pill: 999px;
+
+  --shadow-s: 0 1px 2px color-mix(in srgb, var(--forest-950) 6%, transparent);
+  --shadow-m: 0 6px 20px -6px color-mix(in srgb, var(--forest-950) 16%, transparent);
+  --shadow-l: 0 24px 60px -24px color-mix(in srgb, var(--forest-950) 30%, transparent);
+
+  /* ---- Motion -----------------------------------------------------------
+     Two easings do all the work: `out` for things arriving, `spring` for
+     things the user directly manipulated.                                  */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  --dur-fast: 180ms;
+  --dur-base: 320ms;
+  --dur-slow: 620ms;
+  --dur-reveal: 900ms;
+
+  --z-base: 1;
+  --z-sticky: 50;
+  --z-header: 100;
+  --z-overlay: 200;
+}
+
+/* Users who ask for less motion get none of the decorative kind. Reveal
+   animations collapse to their finished state rather than being skipped,
+   so no content is ever left invisible. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-fast: 1ms;
+    --dur-base: 1ms;
+    --dur-slow: 1ms;
+    --dur-reveal: 1ms;
+  }
+}

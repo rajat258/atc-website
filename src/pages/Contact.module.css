@@ -1,0 +1,329 @@
+/* ==========================================================================
+   Contact
+   A compact header band, then a two column body: the request for quote on
+   the left, the direct details on the right. The sidebar sticks on desktop
+   so the phone number never scrolls away mid form.
+   ========================================================================== */
+
+.head {
+  padding-block-start: calc(var(--header-h) + var(--space-2xl));
+  padding-block-end: var(--space-xl);
+}
+
+.eyebrowRow {
+  margin-block: var(--space-m) var(--space-s);
+}
+
+.title {
+  font-size: var(--step-6);
+  max-width: 16ch;
+  margin-block-end: var(--space-m);
+}
+
+.layout {
+  display: grid;
+  gap: var(--space-2xl);
+  padding-block-end: var(--space-section);
+  align-items: start;
+}
+
+@media (min-width: 64rem) {
+  .layout {
+    grid-template-columns: 3fr 2fr;
+    gap: var(--space-3xl);
+  }
+}
+
+/* The form column is first in source order, so the phone stacks form first
+   without any order juggling. */
+.formCol {
+  min-width: 0;
+}
+
+/* ---- The form ---------------------------------------------------------- */
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+}
+
+.fieldset {
+  border: 0;
+  border-block-start: 1px solid var(--rule);
+  padding: 0;
+  padding-block-start: var(--space-m);
+  min-width: 0;
+}
+
+.legend {
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent-strong);
+  padding: 0;
+  margin-block-end: var(--space-m);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-m);
+}
+
+@media (max-width: 40rem) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3xs);
+  min-width: 0;
+}
+
+.fieldWide { grid-column: 1 / -1; }
+
+.label {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2xs);
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  font-weight: 500;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.req {
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent-strong);
+  text-transform: lowercase;
+}
+
+/* 2.75rem is 44px, the minimum comfortable touch target. */
+.input,
+.select,
+.textarea {
+  inline-size: 100%;
+  min-block-size: 2.75rem;
+  padding: var(--space-2xs) var(--space-s);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-s);
+  background: var(--bg-raised);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: var(--leading-snug);
+  transition:
+    border-color var(--dur-fast) var(--ease-out),
+    background var(--dur-fast) var(--ease-out);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--text-faint);
+}
+
+.input:hover,
+.select:hover,
+.textarea:hover {
+  border-color: var(--rule-strong);
+}
+
+.input:focus-visible,
+.select:focus-visible,
+.textarea:focus-visible {
+  border-color: var(--accent);
+  background: var(--paper-warm);
+}
+
+.textarea {
+  min-block-size: 8rem;
+  padding-block: var(--space-2xs);
+  resize: vertical;
+}
+
+/* The native chevron varies wildly between platforms, so it is replaced with
+   one drawn from the palette. The control itself stays a real select. */
+.selectWrap {
+  position: relative;
+  display: block;
+  min-width: 0;
+}
+
+.select {
+  appearance: none;
+  padding-inline-end: var(--space-xl);
+  cursor: pointer;
+  text-overflow: ellipsis;
+}
+
+.selectWrap::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: var(--space-s);
+  inset-block-start: 50%;
+  inline-size: 0.45rem;
+  block-size: 0.45rem;
+  border-inline-end: 1px solid var(--text-muted);
+  border-block-end: 1px solid var(--text-muted);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  flex-wrap: wrap;
+}
+
+.actionNote {
+  flex: 1 1 24ch;
+  font-size: var(--step--1);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+  max-width: var(--measure-narrow);
+}
+
+/* ---- Success panel ----------------------------------------------------- */
+
+.success {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-l);
+  background: var(--bg-raised);
+  padding: var(--space-l);
+  box-shadow: var(--shadow-m);
+}
+
+.successTitle {
+  font-size: var(--step-3);
+  margin-block: var(--space-s) var(--space-m);
+  max-width: 20ch;
+}
+
+.successBody {
+  font-size: var(--step-0);
+  color: var(--text-muted);
+  max-width: var(--measure);
+}
+
+.successList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2xs);
+  margin-block: var(--space-m);
+}
+
+.successActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-m);
+  flex-wrap: wrap;
+}
+
+/* ---- Sidebar ----------------------------------------------------------- */
+
+.aside {
+  min-width: 0;
+}
+
+@media (min-width: 64rem) {
+  .asideInner {
+    position: sticky;
+    inset-block-start: calc(var(--header-h) + var(--space-l));
+  }
+}
+
+.card {
+  border-block-start: 1px solid var(--rule);
+  padding-block: var(--space-m);
+}
+
+.card:first-child { padding-block-start: var(--space-m); }
+
+.person {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  letter-spacing: var(--tracking-snug);
+  margin-block: var(--space-2xs) var(--space-s);
+}
+
+/* The phone and the email are the conversion on a phone, so they are set
+   large, wrap rather than overflow, and clear 44px on their own. */
+.bigLink {
+  display: block;
+  font-family: var(--font-display);
+  font-size: var(--step-2);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-snug);
+  overflow-wrap: anywhere;
+  padding-block: var(--space-2xs);
+  min-block-size: 2.75rem;
+  text-decoration: none;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.bigLink:hover { color: var(--accent-strong); }
+
+.asideLinks {
+  display: flex;
+  gap: var(--space-m);
+  flex-wrap: wrap;
+  margin-block-start: var(--space-s);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.address {
+  font-style: normal;
+  margin-block-start: var(--space-s);
+  line-height: var(--leading-normal);
+}
+
+.hours {
+  margin-block-start: var(--space-s);
+  font-size: var(--step--1);
+  color: var(--text-muted);
+}
+
+.next {
+  counter-reset: step;
+  margin-block-start: var(--space-s);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-s);
+}
+
+.next li {
+  counter-increment: step;
+  display: grid;
+  grid-template-columns: 2ch 1fr;
+  gap: var(--space-s);
+  font-size: var(--step--1);
+  line-height: var(--leading-normal);
+  color: var(--text-muted);
+}
+
+.next li::before {
+  content: counter(step, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wide);
+  color: var(--accent-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .select,
+  .textarea,
+  .bigLink { transition: none; }
+}
