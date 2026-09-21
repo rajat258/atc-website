@@ -47,7 +47,7 @@ export function Products() {
         description="FIBC bulk bags, woven and BOPP sacks, paper sacks and reconditioned jumbo bags from ATC Group in Ahmedabad. Specifications, safe working loads and typical contents for every bag we make."
       />
 
-      <header className={`section--invert ${styles.head}`}>
+      <header className={styles.head}>
         <div className={`shell ${styles.headInner}`}>
           <p className="eyebrow">The range</p>
           <h1 className={styles.title}>Every bag we make, and what it is for.</h1>

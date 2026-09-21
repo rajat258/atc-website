@@ -26,6 +26,37 @@
   backdrop-filter: none;
 }
 
+/* Over a dark hero the header floats with no surface of its own, so its type
+   has to invert or it disappears into the photograph. Once the page scrolls
+   the bar gains its cream surface and the normal dark type returns. */
+:global(body[data-dark-hero="true"]) .header:not([data-scrolled="true"]) {
+  color: var(--paper);
+}
+
+:global(body[data-dark-hero="true"]) .header:not([data-scrolled="true"]) .link,
+:global(body[data-dark-hero="true"]) .header:not([data-scrolled="true"]) .phone {
+  color: color-mix(in srgb, var(--paper) 74%, transparent);
+}
+
+:global(body[data-dark-hero="true"]) .header:not([data-scrolled="true"]) .link:hover,
+:global(body[data-dark-hero="true"]) .header:not([data-scrolled="true"]) .linkActive,
+:global(body[data-dark-hero="true"]) .header:not([data-scrolled="true"]) .phone:hover {
+  color: var(--paper);
+}
+
+:global(body[data-dark-hero="true"]) .header:not([data-scrolled="true"]) .cta {
+  background: var(--paper);
+  color: var(--forest-950);
+}
+
+:global(body[data-dark-hero="true"]) .header:not([data-scrolled="true"]) .cta:hover {
+  background: var(--gold-300);
+}
+
+/* The drawer always paints its own cream ground, so the inversion must not
+   follow it open on a phone. */
+:global(body[data-dark-hero="true"]) .header[data-open="true"] { color: var(--text); }
+
 .bar {
   display: flex;
   align-items: center;

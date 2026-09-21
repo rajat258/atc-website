@@ -6,9 +6,10 @@
    A compact band, not a hero. Top padding clears the fixed header. */
 .head {
   position: relative;
-  /* .section--invert flips text and rules but not the faint tier, so the
-     eyebrow is lifted here rather than left at 42% forest on forest. */
-  --text-faint: var(--text-on-invert-muted);
+  /* Light, matching Capabilities, About and Contact. A forest band here
+     reads well on its own but leaves the floating header with dark type on
+     a dark ground, and all four interior pages should open the same way. */
+  background: var(--bg-raised);
   padding-block-start: calc(var(--header-h) + var(--space-2xl));
   padding-block-end: var(--space-2xl);
   overflow: hidden;
@@ -20,10 +21,12 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
+  /* A faint green lift in the top right so the band is not a flat slab.
+     Kept low on a cream ground, where anything stronger reads as a stain. */
   background: radial-gradient(
     60rem 30rem at 82% 0%,
-    color-mix(in srgb, var(--forest-600) 45%, transparent) 0%,
-    transparent 70%
+    color-mix(in srgb, var(--forest-400) 12%, transparent) 0%,
+    transparent 68%
   );
 }
 

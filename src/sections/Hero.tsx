@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Button } from "../components/Button";
 import { FOUNDED_FIBC } from "../data/site";
 import styles from "./Hero.module.css";
@@ -18,6 +19,16 @@ const heroFacts = [
  * an observer, because the hero is on screen before any scroll happens.
  */
 export function Hero() {
+  // Tell the header a dark band sits beneath it, so it can switch to light
+  // type while unscrolled. Declared here rather than keyed off the route, so
+  // any page that grows a hero gets the right header for free.
+  useEffect(() => {
+    document.body.dataset.darkHero = "true";
+    return () => {
+      delete document.body.dataset.darkHero;
+    };
+  }, []);
+
   const lines = ["Bulk bags", "built to spec,", "since " + FOUNDED_FIBC + "."];
 
   return (
