@@ -11,7 +11,7 @@ import styles from "./Numbers.module.css";
  */
 export function Numbers() {
   return (
-    <section className={`section--tight section--invert ${styles.band}`}>
+    <section className={`section section--invert ${styles.band}`}>
       <div className="shell">
         <Reveal variant="rule" className={`rule ${styles.rule}`} />
 

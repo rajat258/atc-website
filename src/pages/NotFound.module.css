@@ -8,7 +8,7 @@
   display: grid;
   place-items: center;
   min-block-size: 70svh;
-  padding-block: calc(var(--header-h) + var(--space-2xl)) var(--space-3xl);
+  padding-block: calc(var(--header-h) + var(--space-section)) var(--space-section);
   text-align: center;
 }
 

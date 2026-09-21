@@ -117,7 +117,13 @@ hr {
 .shell--narrow { max-width: var(--width-content); }
 
 .section { padding-block: var(--space-section); }
-.section--tight { padding-block: var(--space-section-tight); }
+
+/* Every band that opens a page sits under the fixed header, so it carries
+   the header's height on top of the standard rhythm. */
+.section--page-head {
+  padding-block: calc(var(--header-h) + var(--space-section)) var(--space-section);
+  background: var(--bg-raised);
+}
 
 .section--invert {
   background: var(--bg-invert);
@@ -218,8 +224,26 @@ hr {
   will-change: opacity, transform;
 }
 
+/* The wipe.
+   The observed element stays fully visible and unclipped, because a
+   clip-path on an observed element zeroes its intersection rectangle and the
+   reveal would never fire. It clips its own overflow instead, and the inner
+   span slides up from beneath. The small bottom padding gives descenders
+   somewhere to live so overflow: hidden does not shave the tail off a "g". */
 [data-reveal="mask"] {
-  clip-path: inset(0 0 100% 0);
+  opacity: 1;
+  transform: none;
+  overflow: hidden;
+  padding-block-end: 0.08em;
+}
+
+.reveal-wipe {
+  display: block;
+  transform: translateY(105%);
+  transition: transform var(--dur-reveal) var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+[data-reveal="mask"][data-revealed="true"] .reveal-wipe {
   transform: none;
 }
 
@@ -254,4 +278,5 @@ hr {
     clip-path: none;
   }
   [data-reveal="rule"] { transform: none; }
+  .reveal-wipe { transform: none; }
 }

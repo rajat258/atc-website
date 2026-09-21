@@ -1,4 +1,4 @@
-import type { ElementType, ReactNode } from "react";
+import type { CSSProperties, ElementType, ReactNode } from "react";
 import { useReveal } from "../hooks/useReveal";
 
 type RevealVariant = "up" | "mask" | "scale" | "left" | "rule";
@@ -19,6 +19,13 @@ type RevealProps = {
  *
  * Deliberately thin: it owns no styling of its own, only the hook and the
  * data attributes the stylesheet keys off.
+ *
+ * The one exception is the "mask" wipe, which needs an inner element to
+ * slide behind the observed element's own overflow. Clipping the observed
+ * element itself is what an earlier version did, and it deadlocked: a
+ * clip-path on the target zeroes its intersection rectangle, so the observer
+ * that was meant to reveal it never fired and the heading stayed invisible
+ * for good.
  */
 export function Reveal({
   children,
@@ -35,10 +42,10 @@ export function Reveal({
       ref={ref}
       className={className}
       data-reveal={variant}
-      style={delay ? ({ "--reveal-delay": `${delay}ms` } as React.CSSProperties) : undefined}
+      style={delay ? ({ "--reveal-delay": `${delay}ms` } as CSSProperties) : undefined}
       {...rest}
     >
-      {children}
+      {variant === "mask" ? <span className="reveal-wipe">{children}</span> : children}
     </Tag>
   );
 }

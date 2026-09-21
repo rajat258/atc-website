@@ -5,7 +5,7 @@
   --text-muted: var(--text-on-invert-muted);
   --text-faint: color-mix(in srgb, var(--paper) 48%, transparent);
   --rule: var(--rule-invert);
-  padding-block: var(--space-2xl)
+  padding-block: var(--space-section)
                  calc(var(--space-l) + env(safe-area-inset-bottom, 0px));
 }
 

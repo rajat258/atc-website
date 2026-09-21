@@ -6,8 +6,8 @@
    ========================================================================== */
 
 .head {
-  padding-block-start: calc(var(--header-h) + var(--space-2xl));
-  padding-block-end: var(--space-xl);
+  padding-block: calc(var(--header-h) + var(--space-section)) var(--space-section);
+  background: var(--bg-raised);
 }
 
 .eyebrowRow {

@@ -90,7 +90,7 @@ export function Capabilities() {
       </section>
 
       {/* ---- 02 Build options ------------------------------------------ */}
-      <section className="section section--tight">
+      <section className="section">
         <div className="shell">
           <SectionHeading
             id="build-options"
@@ -249,7 +249,7 @@ export function Capabilities() {
       </section>
 
       {/* ---- Closing call to action ------------------------------------ */}
-      <section className={`section section--tight ${styles.cta}`}>
+      <section className={`section ${styles.cta}`}>
         <div className="shell">
           <Reveal variant="rule" className={`rule ${styles.ctaRule}`} />
           <div className={styles.ctaInner}>

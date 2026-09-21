@@ -1,4 +1,6 @@
-.head { margin-block-end: var(--space-xl); }
+/* One step down from the band rhythm, so a heading sits closer to the
+   content it introduces than to the section above it. */
+.head { margin-block-end: var(--space-l); }
 
 .rule { margin-block-end: var(--space-m); }
 

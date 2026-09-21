@@ -15,6 +15,41 @@ type RevealTarget = HTMLElement | null;
 
 let observer: IntersectionObserver | null = null;
 
+/** Everything currently waiting to be revealed, for the safety sweep below. */
+const pending = new Set<HTMLElement>();
+let sweepTimer: number | null = null;
+
+const reveal = (node: HTMLElement) => {
+  node.dataset.revealed = "true";
+  pending.delete(node);
+  observer?.unobserve(node);
+};
+
+/**
+ * Last line of defence.
+ *
+ * Content that is hidden until an observer says otherwise is one styling
+ * mistake away from being invisible for good, and that mistake is easy to
+ * make: a clip-path on an observed element zeroes its intersection rectangle
+ * and the callback never fires. This sweep runs once, a beat after the page
+ * settles, and reveals anything already within the viewport that the
+ * observer did not account for. If the observer is doing its job it finds
+ * nothing.
+ */
+const scheduleSweep = () => {
+  if (sweepTimer !== null) return;
+
+  sweepTimer = window.setTimeout(() => {
+    sweepTimer = null;
+    const height = window.innerHeight;
+
+    for (const node of [...pending]) {
+      const { top, bottom } = node.getBoundingClientRect();
+      if (top < height && bottom > 0) reveal(node);
+    }
+  }, 1800);
+};
+
 const getObserver = (): IntersectionObserver | null => {
   if (typeof window === "undefined" || !("IntersectionObserver" in window)) {
     return null;
@@ -32,10 +67,9 @@ const getObserver = (): IntersectionObserver | null => {
 
         if (!entry.isIntersecting && !scrolledPast) continue;
 
-        (entry.target as HTMLElement).dataset.revealed = "true";
         // Reveal is a one-way trip. Unobserving keeps the callback cheap as
         // the page grows and stops elements flickering on scroll-up.
-        observer?.unobserve(entry.target);
+        reveal(entry.target as HTMLElement);
       }
     },
     // Fire slightly before the element is fully on screen so the motion has
@@ -62,8 +96,15 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>() {
       return;
     }
 
+
     io.observe(node);
-    return () => io.unobserve(node);
+    pending.add(node);
+    scheduleSweep();
+
+    return () => {
+      pending.delete(node);
+      io.unobserve(node);
+    };
   }, []);
 
   return ref;

@@ -136,7 +136,7 @@ export function About() {
       </section>
 
       {/* ---- 02 Timeline ----------------------------------------------- */}
-      <section className="section section--tight">
+      <section className="section">
         <div className="shell">
           <SectionHeading
             id="history"
@@ -172,7 +172,7 @@ export function About() {
       </section>
 
       {/* ---- 03 Figures ------------------------------------------------ */}
-      <section className="section section--tight section--invert">
+      <section className="section section--invert">
         <div className="shell">
           <SectionHeading
             id="figures"
@@ -245,7 +245,7 @@ export function About() {
       </section>
 
       {/* ---- 05 Where we are ------------------------------------------- */}
-      <section className="section section--tight">
+      <section className="section">
         <div className="shell">
           <SectionHeading
             id="where"
@@ -285,7 +285,7 @@ export function About() {
       </section>
 
       {/* ---- Closing call to action ------------------------------------ */}
-      <section className={`section section--tight ${styles.cta}`}>
+      <section className={`section ${styles.cta}`}>
         <div className="shell">
           <Reveal variant="rule" className={`rule ${styles.ctaRule}`} />
           <div className={styles.ctaInner}>

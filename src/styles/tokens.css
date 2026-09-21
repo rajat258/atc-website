@@ -97,8 +97,10 @@
   --space-xl: 3rem;
   --space-2xl: 4rem;
   --space-3xl: 6rem;
-  --space-section: clamp(4rem, 2.5rem + 6.5vw, 8.5rem);
-  --space-section-tight: clamp(2.75rem, 1.8rem + 4.2vw, 5.5rem);
+  /* The single band rhythm. Every section, page header, call to action and
+     the footer open and close on this one value, so the page keeps one
+     vertical beat from top to bottom. Nothing should introduce a second. */
+  --space-section: clamp(3.25rem, 2.1rem + 3.9vw, 5.5rem);
 
   /* ---- Layout -----------------------------------------------------------
      --gutter is the one number that controls the page's side margin and is

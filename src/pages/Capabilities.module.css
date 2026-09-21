@@ -6,8 +6,7 @@
    A compact band rather than a hero. Top padding clears the fixed header and
    matches About exactly, so the two pages open on the same note.          */
 .pageHead {
-  padding-block-start: calc(var(--header-h) + var(--space-2xl));
-  padding-block-end: var(--space-2xl);
+  padding-block: calc(var(--header-h) + var(--space-section)) var(--space-section);
   background: var(--bg-raised);
 }
 

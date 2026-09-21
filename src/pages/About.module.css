@@ -6,8 +6,7 @@
    Deliberately identical to the Capabilities header so the two secondary
    pages open the same way.                                                */
 .pageHead {
-  padding-block-start: calc(var(--header-h) + var(--space-2xl));
-  padding-block-end: var(--space-2xl);
+  padding-block: calc(var(--header-h) + var(--space-section)) var(--space-section);
   background: var(--bg-raised);
 }
 

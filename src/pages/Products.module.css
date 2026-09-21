@@ -10,8 +10,7 @@
      reads well on its own but leaves the floating header with dark type on
      a dark ground, and all four interior pages should open the same way. */
   background: var(--bg-raised);
-  padding-block-start: calc(var(--header-h) + var(--space-2xl));
-  padding-block-end: var(--space-2xl);
+  padding-block: calc(var(--header-h) + var(--space-section)) var(--space-section);
   overflow: hidden;
 }
 
@@ -133,7 +132,7 @@
 /* ---- Closing call to action --------------------------------------------- */
 
 .cta {
-  padding-block: var(--space-section-tight);
+  padding-block: var(--space-section);
   --text-faint: var(--text-on-invert-muted);
 }
 
