@@ -7,8 +7,14 @@ import { browserslistToTargets } from "lightningcss";
  * `BASE_PATH` lets the same build target GitHub Pages (served from
  * /atc-website/) and, later, a custom domain at the root. CI sets it; local
  * dev falls back to "/".
+ *
+ * GitHub's configure-pages action reports the base path without a trailing
+ * slash ("/atc-website"), which would make import.meta.env.BASE_URL join
+ * badly against a relative path. Normalising here means the rest of the code
+ * can rely on BASE_URL ending in exactly one slash.
  */
-const base = process.env.BASE_PATH ?? "/";
+const rawBase = process.env.BASE_PATH?.trim() || "/";
+const base = rawBase.endsWith("/") ? rawBase : `${rawBase}/`;
 
 /**
  * Browser support is declared once, in .browserslistrc, and Lightning CSS
