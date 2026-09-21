@@ -242,7 +242,10 @@
 @media (max-width: 62rem) {
   .nav, .actions { display: none; }
   .toggle { display: block; }
-  .drawer { display: flex; }
+  /* :not([hidden]) matters. A bare `.drawer { display: flex }` outranks the
+     browser's own [hidden] rule, which left the closed drawer painted over
+     the hero on every screen under 62rem. */
+  .drawer:not([hidden]) { display: flex; }
   .header[data-open="true"] { block-size: 100svh; }
 }
 

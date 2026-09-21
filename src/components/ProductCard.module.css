@@ -229,7 +229,8 @@
   display: inline-flex;
   padding: var(--space-3xs) var(--space-xs);
   background: var(--bg);
-  border: 1px solid var(--rule);
+  border: 1px solid transparent;
+  box-shadow: inset 0 0 0 1px var(--rule);
   border-radius: var(--radius-pill);
   font-family: var(--font-mono);
   font-size: var(--step--2);

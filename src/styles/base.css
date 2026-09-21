@@ -81,6 +81,11 @@ button {
 
 ul, ol { list-style: none; padding: 0; }
 
+/* The browser's own [hidden] rule is weaker than any class selector, so a
+   component that sets `display` on itself silently overrides it. Restating
+   it here keeps `hidden` meaning hidden, whatever a module does. */
+[hidden] { display: none !important; }
+
 hr {
   border: 0;
   border-top: 1px solid var(--rule);

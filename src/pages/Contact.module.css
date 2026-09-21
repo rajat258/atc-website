@@ -246,7 +246,13 @@
   padding-block: var(--space-m);
 }
 
-.card:first-child { padding-block-start: var(--space-m); }
+/* The top border is a divider between cards, so the first card does not
+   want one. Left in, it draws a stray line above "Speak to someone" with
+   nothing above it to divide. */
+.card:first-child {
+  border-block-start: 0;
+  padding-block-start: 0;
+}
 
 .person {
   font-family: var(--font-display);
