@@ -37,7 +37,13 @@
 
 .lede { margin-block-start: var(--space-m); }
 
-.action { flex: none; }
+/* Shrinkable for the same reason as the call to action row: a nowrap
+   button must be allowed to wrap rather than widen the page. */
+.action {
+  flex: 0 1 auto;
+  min-inline-size: 0;
+  max-inline-size: 100%;
+}
 
 .head[data-align="center"] { text-align: center; }
 

@@ -30,5 +30,10 @@
   display: flex;
   gap: var(--space-s);
   flex-wrap: wrap;
-  flex: none;
+  /* Must be allowed to shrink. `flex: none` let this row size to its widest
+     content, which on a phone is a nowrap phone-number button, so the row
+     measured 418px inside a 393px viewport and pushed the page sideways. */
+  flex: 0 1 auto;
+  min-inline-size: 0;
+  max-inline-size: 100%;
 }

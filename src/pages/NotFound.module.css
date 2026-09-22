@@ -49,4 +49,9 @@
   flex-wrap: wrap;
   justify-content: center;
   margin-block-start: var(--space-xl);
+  /* Must be allowed to shrink and wrap. `flex: none` sizes this row to its
+     widest content, and a nowrap button then widens the whole page. */
+  flex: 0 1 auto;
+  min-inline-size: 0;
+  max-inline-size: 100%;
 }

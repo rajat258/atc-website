@@ -31,8 +31,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   min-height: 100svh;
-  overflow-x: hidden;
 }
+
+/* Last line of defence against sideways scroll, not the fix.
+   `clip` is applied to html and body both, because mobile browsers disagree
+   about which one is the scrolling root. Unlike `hidden` it never turns the
+   element into a scroll container, so `position: sticky` inside the page
+   keeps working and iOS cannot pan the layout viewport to reveal the gap.
+   `hidden` stays on body alone as the fallback for Safari below 16.
+   Anything that actually overflows is still a bug and gets fixed at source. */
+body { overflow-x: hidden; }
+
+html,
+body { overflow-x: clip; }
 
 /* Locked while the mobile drawer is open. */
 body[data-scroll-locked="true"] { overflow: hidden; }
@@ -252,9 +263,23 @@ hr {
   transform: none;
 }
 
+/* Scaling the observed element pushes it past the viewport: a full-bleed
+   band at scale(1.06) is 6% wider than the page and overflows by half that
+   on each side. The element holds still and its own media scales inside it,
+   where the band's overflow clips it. */
 [data-reveal="scale"] {
+  transform: none;
+}
+
+[data-reveal="scale"] > img,
+[data-reveal="scale"] > picture > img {
   transform: scale(1.06);
-  clip-path: inset(0 0 0 0);
+  transition: transform var(--dur-reveal) var(--ease-out) var(--reveal-delay, 0ms);
+}
+
+[data-reveal="scale"][data-revealed="true"] > img,
+[data-reveal="scale"][data-revealed="true"] > picture > img {
+  transform: none;
 }
 
 [data-reveal="left"] { transform: translate3d(-1.5rem, 0, 0); }
@@ -284,4 +309,5 @@ hr {
   }
   [data-reveal="rule"] { transform: none; }
   .reveal-wipe { transform: none; }
+  [data-reveal="scale"] > img { transform: none; }
 }

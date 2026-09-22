@@ -122,3 +122,21 @@ The build is a folder of static files. Point any web server at `dist/`.
 
 See `CONTENT-TODO.md`. The short version: the certifications, the exact
 address and the real product photography still need to come from the client.
+
+---
+
+## Checking responsive layout
+
+```bash
+npm run build && npm run preview     # in one terminal
+node scripts/check-layout.mjs        # in another
+node scripts/check-layout.mjs https://rajat258.github.io/atc-website/
+```
+
+Loads all five routes at eleven viewports from 320px to 1920px and fails on
+anything that would make the page scroll sideways, or on a heading left
+invisible by a reveal that never fired.
+
+It lifts the `overflow-x` guard before measuring. Measuring with the guard in
+place is how horizontal overflow goes unnoticed: the guard hides exactly what
+you are looking for.
