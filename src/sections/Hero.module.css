@@ -22,7 +22,9 @@
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
-  object-position: center 38%;
+  /* The lower third of the frontage shot is gravel, so the crop sits high
+     enough to keep the building and the sky in view at every aspect ratio. */
+  object-position: center 42%;
   transform: scale(1.12);
   animation: hero-settle 2400ms var(--ease-out) forwards;
 }
@@ -41,13 +43,21 @@
       to top,
       var(--forest-950) 0%,
       color-mix(in srgb, var(--forest-950) 82%, transparent) 28%,
-      color-mix(in srgb, var(--forest-950) 34%, transparent) 62%,
-      color-mix(in srgb, var(--forest-900) 22%, transparent) 100%
+      color-mix(in srgb, var(--forest-950) 38%, transparent) 62%,
+      /* The header floats here with cream type, and the sky behind it is
+         bright, so the top of the wash has to carry its own contrast. */
+      color-mix(in srgb, var(--forest-950) 46%, transparent) 100%
     ),
+    /* The frontage carries the ATC monogram on its wall, right where the
+       headline sits. Deep enough on the left that the mark reads as texture
+       behind the type rather than competing with it, clearing to nothing by
+       the right so the building itself stays the subject. */
     linear-gradient(
-      105deg,
-      color-mix(in srgb, var(--forest-900) 62%, transparent) 0%,
-      transparent 58%
+      100deg,
+      color-mix(in srgb, var(--forest-950) 88%, transparent) 0%,
+      color-mix(in srgb, var(--forest-900) 66%, transparent) 30%,
+      color-mix(in srgb, var(--forest-900) 24%, transparent) 55%,
+      transparent 78%
     );
 }
 

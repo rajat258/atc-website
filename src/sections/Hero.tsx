@@ -35,7 +35,7 @@ export function Hero() {
     <section className={styles.hero}>
       <div className={styles.media} aria-hidden="true">
         <img
-          src={media("bags-stacked-yard.jpg")}
+          src={media("plant-frontage.jpg")}
           alt=""
           className={styles.image}
           fetchPriority="high"
