@@ -126,8 +126,8 @@ export function Capabilities() {
       {/* ---- Full bleed band ------------------------------------------- */}
       <section className={styles.band}>
         <img
-          src={media("extrusion-line.jpg")}
-          alt="Tape extrusion line running at the Akshay FIBC plant."
+          src={media("production-line.jpg")}
+          alt="Production line machinery at the Akshay FIBC plant."
           className={styles.bandImage}
           loading="lazy"
           decoding="async"

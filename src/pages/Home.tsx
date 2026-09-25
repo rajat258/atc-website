@@ -1,5 +1,6 @@
 import { Seo } from "../components/Seo";
 import { CallToAction } from "../sections/CallToAction";
+import { Customers } from "../sections/Customers";
 import { Divisions } from "../sections/Divisions";
 import { Hero } from "../sections/Hero";
 import { Industries } from "../sections/Industries";
@@ -12,8 +13,8 @@ import { Ticker } from "../sections/Ticker";
  * Home.
  *
  * The order is deliberate: who we are, what we make, the numbers, how we
- * make it, who we make it for, then the ask. A buyer who stops after the
- * second band has still seen the catalogue.
+ * make it, who we make it for, who already buys from us, then the ask. A
+ * buyer who stops after the second band has still seen the catalogue.
  */
 export function Home() {
   return (
@@ -29,6 +30,7 @@ export function Home() {
       <Numbers />
       <Process />
       <Industries />
+      <Customers />
       <CallToAction />
     </>
   );

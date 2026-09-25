@@ -23,10 +23,19 @@
   block-size: 100%;
   object-fit: cover;
   /* The lower third of the frontage shot is gravel, so the crop sits high
-     enough to keep the building and the sky in view at every aspect ratio. */
-  object-position: center 42%;
+     enough to keep the building and the sky in view at every aspect ratio.
+     Anchored right, because the Unit 2 sign is on the right edge of the wall
+     and the left of the frame sits under the headline anyway. */
+  object-position: right 42%;
   transform: scale(1.12);
   animation: hero-settle 2400ms var(--ease-out) forwards;
+}
+
+/* On a portrait phone only a narrow slice shows, and anchored right that
+   slice is the sign itself, sitting behind the headline. The centre bay is
+   calmer under type. */
+@media (max-width: 40rem) {
+  .image { object-position: center 42%; }
 }
 
 @keyframes hero-settle {

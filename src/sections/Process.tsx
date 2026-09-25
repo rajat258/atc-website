@@ -40,8 +40,8 @@ export function Process() {
 
       <Reveal variant="scale" className={styles.band}>
         <img
-          src={media("extrusion-line.jpg")}
-          alt="Extrusion and tape stretching line inside the Akshay FIBC plant"
+          src={media("production-line.jpg")}
+          alt="Production line machinery inside the Akshay FIBC plant"
           loading="lazy"
           decoding="async"
         />

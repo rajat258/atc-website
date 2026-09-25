@@ -93,7 +93,8 @@ Anything the plant does not do should come off the site.
 
 - A downloadable PDF datasheet per bag type. No competitor offers one.
 - A safe handling guide and a food safety guide as PDFs.
-- Named customers or case studies, if any client will agree to be named.
+- Case studies. Named customers (Reliance, Madhu Silica, Sumilon) are now on
+  the home page, supplied by the client in September 2026.
 - Minimum order quantity and typical lead time. Nobody in this market
   publishes either, so doing it would stand out.
 - A form backend. The enquiry form currently opens the visitor's email client.

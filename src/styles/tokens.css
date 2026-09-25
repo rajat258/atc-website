@@ -40,6 +40,8 @@
   --bg-sunken: var(--paper-deep);
   --bg-invert: var(--forest-900);
   --bg-invert-raised: var(--forest-800);
+  /* Customer logos are drawn for white, so their tiles sit on it. */
+  --logo-ground: #ffffff;
 
   --text: var(--forest-950);
   --text-muted: color-mix(in srgb, var(--forest-950) 62%, transparent);

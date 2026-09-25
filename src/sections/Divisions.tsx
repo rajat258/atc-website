@@ -8,15 +8,15 @@ import { media } from "../lib/media";
 const panels = [
   {
     ...divisions.fibc,
-    image: "stitching-floor.jpg",
-    alt: "Heavy-duty stitching machines on the Akshay FIBC assembly floor",
+    image: "stitching-machine.jpg",
+    alt: "Heavy duty stitching machine on the Akshay FIBC assembly floor",
     to: "/products#akshay-fibc",
     lines: ["New bulk bags", "Woven and BOPP sacks", "Built to your drawing"],
   },
   {
     ...divisions.trading,
-    image: "bags-stacked-yard-2.jpg",
-    alt: "Reconditioned jumbo bags stacked and ready for grading",
+    image: "bag-forklift-lift.jpg",
+    alt: "A jumbo bag lifted by forklift in the yard, with baled stock behind",
     to: "/products#akshay-trading",
     lines: ["Reconditioned jumbo bags", "Paper sacks", "Inspected and graded"],
   },

@@ -193,6 +193,39 @@
 .approachProse { color: var(--text-muted); }
 
 /* ---- 05 Where we are ---------------------------------------------------- */
+.units {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-l);
+  margin-block-end: var(--space-2xl);
+  list-style: none;
+  padding: 0;
+}
+
+.unitMedia {
+  border-radius: var(--radius-m);
+  overflow: hidden;
+  background: var(--bg-sunken);
+}
+
+/* The two source photographs have different shapes. A shared 16:9 frame
+   keeps the pair level and is the Unit 2 frontage's own shape, so its wall
+   signage is never cropped. */
+.unitImage {
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.unitLabel {
+  margin-block-start: var(--space-xs);
+  font-family: var(--font-mono);
+  font-size: var(--step--2);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--accent-strong);
+}
+
 .place {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -252,6 +285,8 @@
 }
 
 @media (max-width: 56rem) {
+  .units { grid-template-columns: minmax(0, 1fr); }
+
   .divisions,
   .approach {
     grid-template-columns: minmax(0, 1fr);

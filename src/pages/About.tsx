@@ -14,14 +14,28 @@ const divisionCards = [
   {
     ...divisions.fibc,
     href: "/products#akshay-fibc",
-    image: "stitching-floor.jpg",
-    alt: "Operators assembling bulk bags on the stitching floor.",
+    image: "stitching-machine.jpg",
+    alt: "A stitching machine on the bulk bag assembly floor.",
   },
   {
     ...divisions.trading,
     href: "/products#akshay-trading",
-    image: "bags-stacked-yard-2.jpg",
-    alt: "Graded jumbo bags baled and stacked in the yard.",
+    image: "bag-forklift-lift.jpg",
+    alt: "A jumbo bag lifted by forklift, with baled stock stacked in the yard.",
+  },
+];
+
+/** Photographs of the units, shown above the location notes. */
+const units = [
+  {
+    label: "Unit 1",
+    image: "unit-1-dispatch.jpg",
+    alt: "Unit 1, with a loaded truck at the dispatch bay.",
+  },
+  {
+    label: "Unit 2",
+    image: "unit-2-frontage.jpg",
+    alt: "The frontage of Unit 2, with the ATC Group mark on the wall.",
   },
 ];
 
@@ -253,6 +267,25 @@ export function About() {
             eyebrow="Where we are"
             title="Ahmedabad, and outward from there."
           />
+
+          <ul className={styles.units}>
+            {units.map((unit, i) => (
+              <Reveal as="li" key={unit.label} delay={i * 110} className={styles.unit}>
+                <figure>
+                  <div className={styles.unitMedia}>
+                    <img
+                      src={media(unit.image)}
+                      alt={unit.alt}
+                      className={styles.unitImage}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <figcaption className={styles.unitLabel}>{unit.label}</figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </ul>
 
           <div className={styles.place}>
             <Reveal className={styles.placeItem}>

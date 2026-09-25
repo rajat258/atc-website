@@ -60,7 +60,7 @@ export const products: Product[] = [
       { label: "Liner", value: "Optional, tubular or shaped PE" },
     ],
     applications: ["Cement", "Sand", "Minerals", "Ceramic frit", "Resins"],
-    image: "bags-stacked-yard.jpg",
+    image: "bags-stacked.jpg",
   },
   {
     id: "u-panel",
@@ -78,7 +78,7 @@ export const products: Product[] = [
       { label: "Height", value: "75 cm to 200 cm" },
     ],
     applications: ["Fertiliser", "Sugar", "Grain", "Polymer pellets", "Soda ash"],
-    image: "warehouse-exterior.jpg",
+    image: "bag-single.jpg",
   },
   {
     id: "baffle-q",
@@ -114,7 +114,7 @@ export const products: Product[] = [
       { label: "Traceability", value: "Batch and production date per bag" },
     ],
     applications: ["Sugar", "Rice", "Pulses", "Spices", "Milk powder", "Starch"],
-    image: "stitching-floor.jpg",
+    image: "stitching-machine.jpg",
   },
   {
     id: "industrial-clean",
@@ -131,7 +131,7 @@ export const products: Product[] = [
       { label: "Safe working load", value: "500 kg to 2,000 kg" },
     ],
     applications: ["Pharma intermediates", "Fine chemicals", "Pigments", "Additives"],
-    image: "fabric-rolls.jpg",
+    image: "fabric-roll-stock.jpg",
   },
   {
     id: "type-c",
@@ -149,7 +149,7 @@ export const products: Product[] = [
       { label: "Safety factor", value: "5:1 or 6:1" },
     ],
     applications: ["Flammable powders", "Solvent-adjacent handling", "Combustible dust"],
-    image: "extrusion-line.jpg",
+    image: "production-line.jpg",
   },
   {
     id: "small-pp",
@@ -165,7 +165,7 @@ export const products: Product[] = [
       { label: "Print", value: "Up to four colours" },
     ],
     applications: ["Grain", "Cement", "Animal feed", "Retail agro packs"],
-    image: "webbing-reels.jpg",
+    image: "webbing-stock.jpg",
   },
   {
     id: "used-jumbo",
@@ -181,7 +181,7 @@ export const products: Product[] = [
       { label: "Supply", value: "Baled, quantity to order" },
     ],
     applications: ["Aggregates", "Scrap", "Waste handling", "Site material"],
-    image: "bags-stacked-yard-2.jpg",
+    image: "unit-1-dispatch.jpg",
   },
   {
     id: "used-liner",
@@ -196,7 +196,7 @@ export const products: Product[] = [
       { label: "Condition", value: "Once used, inspected and graded" },
     ],
     applications: ["Hygroscopic powders", "Granules", "Fine aggregates"],
-    image: "forklift-loading.jpg",
+    image: "bag-forklift-lift.jpg",
   },
   {
     id: "used-dust",

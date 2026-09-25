@@ -1,0 +1,47 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-m);
+  list-style: none;
+  padding: 0;
+}
+
+.cell { display: flex; }
+
+.tile {
+  display: block;
+  inline-size: 100%;
+  aspect-ratio: 16 / 9;
+  padding: var(--space-l);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-l);
+  background: var(--logo-ground);
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out);
+}
+
+.tile:hover {
+  border-color: var(--rule-strong);
+  box-shadow: var(--shadow-m);
+  transform: translateY(-3px);
+}
+
+/* Fills the padded tile and letterboxes itself, so a wide wordmark and a
+   near-square badge both fit whole at any tile size. */
+.logo {
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: contain;
+}
+
+@media (max-width: 52rem) {
+  .grid { grid-template-columns: minmax(0, 1fr); }
+
+  .tile {
+    aspect-ratio: auto;
+    block-size: 9rem;
+    padding: var(--space-m) var(--space-l);
+  }
+}
